@@ -1,10 +1,13 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require("../extensions/index.js");
 
-// const { ListNode } = require('../extensions/list-node.js');
+const { ListNode } = require("../extensions/list-node.js");
 
 /**
  * Given a singly linked list of integers l and an integer k,
  * remove all elements from list l that have a value equal to k.
+ *
+ * Даны односвязный список целых чисел l и целое число k,
+ * удалите из списка l все элементы, значение которых равно k.
  *
  * @param {List} l
  * @param {Number} k
@@ -15,18 +18,32 @@ const { NotImplementedError } = require('../extensions/index.js');
  * the output should be [1, 2, 4, 5]
  *
  * Singly - linked lists are already defined using interface
+ *
  * class ListNode {
  *   constructor(x) {
  *     this.value = x;
  *     this.next = null;
  *   }
  * }
+ *
+ *
  */
-function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function removeKFromList(l, k) {
+  listCurrent = l;
+  listBack = null;
+
+  while (listCurrent !== null) {
+    listCurrent.value === k
+      ? listBack !== null
+        ? (listBack.next = listCurrent.next)
+        : (l = l.next)
+      : (listBack = listCurrent);
+
+    listCurrent = listCurrent.next;
+  }
+  return l;
 }
 
 module.exports = {
-  removeKFromList
+  removeKFromList,
 };
